@@ -79,8 +79,7 @@ public class PruebaAsignarPermisos {
         administradorAsignaciones.camibiarEstadoPermisoDeRol(2,21,false);
         administradorAsignaciones.camibiarEstadoPermisoDeRol(2,22,false);
         administradorAsignaciones.camibiarEstadoPermisoDeRol(2,23,false);
-        administradorAsignaciones.camibiarEstadoPermisoDeRol(2,24,false);
-        
+        administradorAsignaciones.camibiarEstadoPermisoDeRol(2,24,false);        
     }
     public static void asignarPermisosCajero() {
 
