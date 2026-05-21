@@ -1,7 +1,5 @@
 
 package com.modelo;
-
-
 public class Permisos {
     
     //declaro las variables reales que son las mismas que se encutran en la columnas de mi tabla

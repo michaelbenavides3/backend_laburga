@@ -27,7 +27,7 @@ public class RolPermisoDao {
         boolean operacionAsignacionExitosa = false;
 
         //consulto el sql para guardar la relacion ente rol y permisos. 
-        String consultaInsertarSql = "INSERT INTO rolPermisos (id_rol, id_permisos) VALUE (?, ?)";
+        String consultaInsertarSql = "INSERT INTO rolPermisos (id_rol, id_permisos, activo_rolpermiso) VALUE (?, ?, ?)";
 
         //abro mi bloque de try catch, para proteger la base de datos del software de que se congele el programa
         try {
@@ -41,6 +41,8 @@ public class RolPermisoDao {
                 sentenciaSqlPreparada.setInt(1, nuevaUnionObjeto.getIdRol());
                 //se rempaza el segundo ?. con el nuemro de id del permisoej 5 crear pedido
                 sentenciaSqlPreparada.setInt(2, nuevaUnionObjeto.getIdPermisos());
+                //se remplaza el 3 ? 
+                sentenciaSqlPreparada.setBoolean(3, nuevaUnionObjeto.isActivoRolpermiso());
                 //envio la orden final a mysql, esta instrcuion de devuleve cuantas filas nuevas se crearon
                 int cantidadFilasCreadas = sentenciaSqlPreparada.executeUpdate();
                 //si la cantidad es mayor que 0, esto significa que la fila se guardo de manera correcta
@@ -80,7 +82,7 @@ public class RolPermisoDao {
         //se incia en false, solo cambiara a verdadero cuando la operacion se exitosa
         boolean operacionActualizacionExitosa = false;
         //modifica la columna de estado basandome en la pareja de IDS, para asegurarme que solo afecte esta fila
-        String consultaActualizacionSql = "UPDATE rolPermisos SET activo_rolpermiso = ? where id_rol = ? AND id_permiso = ?";
+        String consultaActualizacionSql = "UPDATE rolPermisos SET activo_rolpermiso = ? where id_rol = ? AND id_permisos = ?";
 
         try {
             //abrimos la conexion utilizando el metodo get con la clase conexion 
