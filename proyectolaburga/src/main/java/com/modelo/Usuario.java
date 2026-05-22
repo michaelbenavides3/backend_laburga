@@ -74,7 +74,7 @@ public class Usuario {
     }
     
     //metodo set cuando necesito asignar o cambiar el numero de identificacion
-    public void getContraseñaUsuario(String contraseñaUsuario){
+    public void setContraseñaUsuario(String contraseñaUsuario){
         this.contraseñaUsuario = contraseñaUsuario;
     }
     
