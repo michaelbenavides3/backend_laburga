@@ -12,8 +12,8 @@ public class claseConexion {
     //se define el usuario de administrador
     private static final String USER = "root";
     //se define la contraseña de la base de datos
-    private static final String PASSWORD = "#Aprendiz2024";
-    //private static final String PASSWORD = "Lauraluna94.";
+    //private static final String PASSWORD = "#Aprendiz2024";
+    private static final String PASSWORD = "Lauraluna94.";
     
     //creamos el metodo principal para obtener la conexion, se deja
     //static para porder llamar despues del dao y no tener que crear un objeto de esta clase cada vez
