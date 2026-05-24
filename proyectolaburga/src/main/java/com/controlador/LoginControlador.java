@@ -27,17 +27,17 @@ public class LoginControlador extends HttpServlet {
         // PASO A: ATRAPAR LAS CAJAS DE TEXTO DEL FRONTEND (HTML)
         // ---------------------------------------------------------------------
         // Uso "getParameter" buscando los nombres exactos que pusiste en los atributos 'name' de tus inputs HTML.
-        String identificacionRecibida = peticionWeb.getParameter("txtUsuario");
-        String claveRecibida = peticionWeb.getParameter("txtClave");
+        String identificacionDigitada = peticionWeb.getParameter("txtUsuario");
+        String claveDigitada = peticionWeb.getParameter("txtClave");
 
         // Instancio mi herramienta de base de datos para usuarios.
-        Usuario administradorUsuarios = new Usuario();
+        UsuarioDao administradorUsuarios = new UsuarioDao();
 
         // ---------------------------------------------------------------------
         // PASO B: MANDAR A VERIFICAR A LA BASE DE DATOS
         // ---------------------------------------------------------------------
         // Le paso los textos atrapados a mi método del DAO y el veredicto lo guardo en un objeto.
-        UsuarioDao empleadoLogeado = administradorUsuarios.verifica(identificacionRecibida, claveRecibida);
+        Usuario empleadoLogeado = administradorUsuarios.verificarCredencialesIngreso(identificacionDigitada, claveDigitada);
 
         // ---------------------------------------------------------------------
         // PASO C: TOMAR UNA DECISIÓN DE REDIRECCIÓN (CONTROLADOR)

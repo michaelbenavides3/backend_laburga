@@ -134,25 +134,99 @@ public class UsuarioDao {
                 }
             }
             //si ocuree un probelma o una columna esta mal escrita el programa enteara automaticamtne aca
-        }catch (SQLException errorBaseDato) {
+        } catch (SQLException errorBaseDato) {
             System.out.println("error al intenttar obtener la lista de usuarios: " + errorBaseDato.getMessage());
-        }finally{
-            try{
-                if(filasResultadosSql !=null){
+        } finally {
+            try {
+                if (filasResultadosSql != null) {
                     filasResultadosSql.close();
                 }
-                if(sentenciaSqlPreparada !=null){
+                if (sentenciaSqlPreparada != null) {
                     sentenciaSqlPreparada.close();
                 }
-                if(conexionFisicaBaseDatos !=null){
+                if (conexionFisicaBaseDatos != null) {
                     conexionFisicaBaseDatos.close();
                     System.out.println("conexion de lectura de usuarios cerrada de forma segura");
                 }
-            }catch(SQLException errorAlCerrar){
+            } catch (SQLException errorAlCerrar) {
                 System.out.println("error al cerrar los canales de lectura de usaurio" + errorAlCerrar.getMessage());
             }
         }
         return listaDeUsuariosEncontrados;
+    }
+
+    // =========================================================================
+    // OPERACIÓN: POST DE VALIDACIÓN (Buscar un Usuario para el Inicio de Sesión)
+    // =========================================================================
+    // Creo este método para recibir la identificación y la clave desde mi formulario web.
+    // Irá a buscar en MySQL si existe un empleado con esos datos exactos.
+    // Devolverá un objeto de tipo "Usuario" lleno si lo encuentra, o "null" si las credenciales están mal.
+    public Usuario verificarCredencialesIngreso(String identificacionDigitada, String claveDigitada) {
+
+        // Creo una variable para la conexión física y otra para preparar el código SQL de consulta.
+        Connection conexionFisicaBaseDatos = null;
+        PreparedStatement sentenciaSqlPreparada = null;
+
+        // El "ResultSet" es la bandeja que sostendrá la fila del empleado si MySQL encuentra una coincidencia.
+        ResultSet filaResultadoSql = null;
+
+        // Creo un objeto de usuario vacío que empezará en null. Solo lo llenaré si los datos coinciden.
+        Usuario usuarioValidadoEncontrado = null;
+
+        // Escribo mi consulta SQL. Le pido que busque en la tabla al usuario que tenga esa identificación,
+        // esa clave exacta, y que además esté en estado 'activo' para trabajar en mi restaurante.
+        String consultaValidarSql = "SELECT id_usuario, nombre_completo, nombre_usuario, id_rol, estado_usuario FROM usuario WHERE nombre_usuario = ? AND contraseña_usuario = ? AND estado_usuario = 'activo'";
+
+        try {
+            // Abro la línea de comunicación directa con mi base de datos de MySQL.
+            conexionFisicaBaseDatos = claseConexion.getConexion();
+
+            if (conexionFisicaBaseDatos != null) {
+                // Preparo mi consulta de selección segura.
+                sentenciaSqlPreparada = conexionFisicaBaseDatos.prepareStatement(consultaValidarSql);
+
+                // Sustituyo los signos "?" por los textos reales que digitó el empleado en el navegador web.
+                sentenciaSqlPreparada.setString(1, identificacionDigitada);
+                sentenciaSqlPreparada.setString(2, claveDigitada);
+
+                // Ejecuto la consulta de lectura.
+                filaResultadoSql = sentenciaSqlPreparada.executeQuery();
+
+                // Si la bandeja encuentra una fila válida (".next()"), significa que el usuario sí existe y puso bien su clave.
+                if (filaResultadoSql.next()) {
+                    // Instancio mi objeto de usuario para sacarlo de su estado null.
+                    usuarioValidadoEncontrado = new Usuario();
+
+                    // Saco la información de las columnas de MySQL y las guardo en mi objeto de Java.
+                    usuarioValidadoEncontrado.setIdUsuario(filaResultadoSql.getInt("id_usuario"));
+                    usuarioValidadoEncontrado.setNombreCompleto(filaResultadoSql.getString("nombre_completo"));
+                    usuarioValidadoEncontrado.setNombreUsuario(filaResultadoSql.getString("nombre_usuario"));
+                    usuarioValidadoEncontrado.setIdRol(filaResultadoSql.getInt("id_rol"));
+                    usuarioValidadoEncontrado.setEstadoUsuario(filaResultadoSql.getString("estado_usuario"));
+                }
+            }
+
+        } catch (SQLException errorBaseDatos) {
+            System.out.println("Error al intentar validar las credenciales en MySQL: " + errorBaseDatos.getMessage());
+        } finally {
+            // Aplico mi protocolo de apagado obligatorio para liberar la memoria de mi servidor.
+            try {
+                if (filaResultadoSql != null) {
+                    filaResultadoSql.close();
+                }
+                if (sentenciaSqlPreparada != null) {
+                    sentenciaSqlPreparada.close();
+                }
+                if (conexionFisicaBaseDatos != null) {
+                    conexionFisicaBaseDatos.close();
+                }
+            } catch (SQLException errorAlCerrar) {
+                System.out.println("Error al cerrar los canales de validacion: " + errorAlCerrar.getMessage());
+            }
+        }
+
+        // Devuelvo el usuario relleno (éxito) o null (si puso mal la clave o no existe).
+        return usuarioValidadoEncontrado;
     }
 
 }
