@@ -1,23 +1,20 @@
-
 package com.conexion;
 
 import com.dao.RolesDao;
 import com.modelo.Roles;
 import java.util.List;
 
-
 public class PruebaRoles {
 
-    
     public static void main(String[] args) {
-        
+
         System.out.println("inicia la prueba.");
-        
-                RolesDao administradorRoles = new RolesDao();
+
+        RolesDao administradorRoles = new RolesDao();
 
         //operador post para registrar
         Roles rolDePrueba = new Roles();
-        
+
         //rellenamos los objetos con los roles validos
         rolDePrueba.setNombreRol("mesero");
         rolDePrueba.setDescripcionRol("encargado de atender las mesas, unir la mesas, tomar los pedidos enviarlos a caja y crear clientes nuevos");
@@ -38,39 +35,36 @@ public class PruebaRoles {
         rolDePrueba.setNombreRol("mensajero");
         rolDePrueba.setDescripcionRol("encargado de crear nuevos usuarios, dar debaja, recuparar las contraseñas");
         administradorRoles.registrarNuevoRol(rolDePrueba);
-        //imstacio al administradorroles para poder enviarlos a mysql
-        
-        //un print donde se dira se estan guardando el rol
-        //System.out.println("El rol (Mesero), se esta guardando en la base de datos" + rolDePrueba);
-        
+
+       
         //llamo al metodo registrar de mi dao y guardo la respuesta (verdadero o falso ) en una variale testigo
         boolean resultadoRegistro = administradorRoles.registrarNuevoRol(rolDePrueba);
-        
+
         //reviso si la base de datos acepto y guardo mi objeto
-        if(resultadoRegistro == true){
+        if (resultadoRegistro == true) {
             System.out.println("registro confirmado");
-        }else{
+        } else {
             System.out.println("aviso: no se creo la fila, ");
         }
-        
+
         System.out.println("----------------------------------------------------------");
-        
+
         System.out.println("leer lo roles");
-        
+
         List<Roles> listaDeRoles = administradorRoles.obtenerListaTodosLosRoles();
-        
-        if(listaDeRoles.isEmpty() == false){
+
+        if (listaDeRoles.isEmpty() == false) {
             System.out.println("confirmado tu operacion funciona de maravilla");
-            
+
             System.out.println("total de roles encontrados en la tabla " + listaDeRoles.size());
-            
-            for(Roles rolFilaActual : listaDeRoles){
+
+            for (Roles rolFilaActual : listaDeRoles) {
                 System.out.println("* puesto en el sistema: ID [" + rolFilaActual.getIdRol() + "] -> cargo: " + rolFilaActual.getNombreRol());
             }
-        }else{
+        } else {
             System.out.println("la base de datos respondio bien pero la tabal se encutra vacia");
         }
         System.out.println("fin de la prueba");
     }
-    
+
 }

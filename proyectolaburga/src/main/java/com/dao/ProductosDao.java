@@ -23,7 +23,7 @@ public class ProductosDao {
         boolean operacionRegistroExitosa = false;
 
         // La orden para insertar en MySQL. Los "?" son cajas vacías que llenaremos luego.
-        String consultaInsertarSql = "INSERT INTO productos (nombre_producto, descripcion_producto, precio_base_producto, categoria_producto, disponible_producto) VALUES (?, ?, ?, ?, ?)";
+        String consultaInsertarSql = "INSERT INTO productos (nombre_producto, descripcion_producto, precio_baseproducto, categoria_producot, disponible_producto) VALUES (?, ?, ?, ?, ?)";
 
         try {
             // 1. Abrimos la puerta a la base de datos
