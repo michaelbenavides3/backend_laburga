@@ -58,7 +58,7 @@ public class LoginControlador extends HttpServlet {
                 System.out.println("inicio de seccion exitosa: perfil: mesero");
             } else if (empleadoLogeado.getIdRol() == 2) {
                 // Si es ID 2 (Cajero), lo redirijo al módulo de caja.
-                respuestaWeb.sendRedirect("html/cajero.html");
+                respuestaWeb.sendRedirect("html/c-cuenta-por-mesa.html");
                 System.out.println("inicio de seccion exitosa: perfil: cajero");
             } else {
                 // Si es otro cargo (como cocinero), lo devuelvo al inicio de bienvenida por seguridad.
