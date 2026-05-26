@@ -16,15 +16,15 @@ public class PruebaPedidos {
         // Pasamos: (idPedido, idMesa, idMesero, estadoPedido)
         // Usamos el idPedido en 0 porque es AUTO_INCREMENT en tu base de datos.
         // Asegúrate de que el idMesero (ej: 1 o el ID de un usuario real) exista en tu tabla usuario.
-        Pedido pedidoPrueba = new Pedido(0, 1, 1, "activo");
+        Pedido pedidoPrueba = new Pedido(0, 1, 3, "activo");
 
         System.out.println("Enviando datos a MySQL: Mesa " + pedidoPrueba.getIdMesa() + " - Mesero " + pedidoPrueba.getIdMesero());
 
         // 3. Ejecutamos el método del DAO
-        boolean resultado = pedidoDao.registrarNuevoPedido(pedidoPrueba);
+        int idPedidoGenerado = pedidoDao.registrarNuevoPedido(pedidoPrueba);
 
         // 4. Verificamos la respuesta del servidor
-        if (resultado) {
+        if (idPedidoGenerado > 0) {
             System.out.println("¡ÉXITO TOTAL! El pedido se registró melo en la base de datos.");
         } else {
             System.out.println("¡FALTA EN EL SISTEMA! Revisa la consola para ver el error de SQL.");
