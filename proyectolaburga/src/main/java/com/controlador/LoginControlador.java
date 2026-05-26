@@ -54,7 +54,7 @@ public class LoginControlador extends HttpServlet {
                 System.out.println("inicio de seccion exitosa: perfil: administador");
             } else if (empleadoLogeado.getIdRol() == 1) {
                 // Si es ID 1 (Mesero), lo mando a la pantalla de la carta o comandas.
-                respuestaWeb.sendRedirect("html/m-registrar-pedido.html");
+                respuestaWeb.sendRedirect("html/m-meserocopy.jsp");
                 System.out.println("inicio de seccion exitosa: perfil: mesero");
             } else if (empleadoLogeado.getIdRol() == 2) {
                 // Si es ID 2 (Cajero), lo redirijo al módulo de caja.
@@ -68,7 +68,7 @@ public class LoginControlador extends HttpServlet {
         } else {
             // SI LAS CREDENCIALES ESTÁN MAL: Lo regreso de forma obligatoria a tu pantalla de t-login.html
             // Le anexo un parámetro en la URL para avisarle a tu diseño que hubo un error de clave.
-            respuestaWeb.sendRedirect("html/t-login.html?error=1");
+            respuestaWeb.sendRedirect("html/t-login.jsp?error=1");
             System.out.println("intento de acceso denegado, para las credenciales: " + identificacionDigitada);
         }
     }

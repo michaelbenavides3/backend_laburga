@@ -1,3 +1,15 @@
+<%
+    // esta línea de Java atrapamos el ID que viaja en la URL
+    String idMesaCapturado = request.getParameter("idMesa");
+    
+    // Si por alguna razón entran directo sin dar clic a una mesa, le ponemos "1" por defecto
+    if (idMesaCapturado == null) {
+        idMesaCapturado = "1";
+    }
+%>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,7 +26,7 @@
 
   <!-- header -->
   <header class="header">
-    <h1>Gestion menu - panel mesero</h1>
+    <h1>Gestion menu - panel mesero Mesa <%= idMesaCapturado %> </h1>
   </header>
   <!-- contener el formulario y contener el logo, para lograr separarlos en dos paneles iguales -->
   <!-- Sidebar -->
@@ -23,13 +35,13 @@
       <h2>Panel MenÃº Mesero</h2>
       <nav>
         <img src="../recurso/logo-burguer.png" alt="imagen-logo-lagurga">
-        <a href="m-meserocopy.html" class="btn">Mesas</a>
-        <a href="unir-mesas.html" class="btn">Unir Mesas</a>
-        <a href="separar-mesas.html" class="btn">Separar Mesas</a>
-        <a href="enviar-cuenta.html" class="btn">Enviar cuenta</a>
-        <a href="verificarcuenta.html" class="btn">Verificar cuenta</a>
-        <a href="m-formulario-reserva.html" class="btn">Realizar Reserva</a>
-        <a href="m-formulario-clientenuevo-mesero.html" class="btn">Nuevo Cliente</a>
+        <a href="m-meserocopy.jsp" class="btn">Mesas</a>
+        <a href="unir-mesas.jsp" class="btn">Unir Mesas</a>
+        <a href="separar-mesas.jsp" class="btn">Separar Mesas</a>
+        <a href="enviar-cuenta.jsp" class="btn">Enviar cuenta</a>
+        <a href="verificarcuenta.jsp" class="btn">Verificar cuenta</a>
+        <a href="m-formulario-reserva.jsp" class="btn">Realizar Reserva</a>
+        <a href="m-formulario-clientenuevo-mesero.jsp" class="btn">Nuevo Cliente</a>
       </nav>
     </aside>
     <main class="contenido">
