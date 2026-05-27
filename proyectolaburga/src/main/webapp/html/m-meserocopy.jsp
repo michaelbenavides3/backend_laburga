@@ -1,4 +1,11 @@
 
+<%@ page import="com.dao.MesaDao" %>
+<%@ page import="com.modelo.Mesa" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,13 +22,13 @@
   <!-- Encabezado -->
   <header class="encabezado">
     <!-- <h1>Panel del Mesero</h1> -->
-    <p>Gestión de mesas y pedidos</p>
+    <p>GestiÃ³n de mesas y pedidos</p>
   </header>
 
   <div class="layout">
     <!-- Sidebar -->
     <aside class="sidebar">
-      <h2>Panel Menú Mesero</h2>
+      <h2>Panel MenÃº Mesero</h2>
       <nav>
         <img src="../recurso/logo-burguer.png" alt="imagen-logo-lagurga">
         <a href="m-mesas.jsp" class="btn">Mesas</a>
@@ -39,62 +46,110 @@
     <main class="contenido">
       <!-- Contenido principal -->
 
-      <!-- Cuadrícula de mesas -->
+      <!-- CuadrÃ­cula de mesas -->
       <section class="mesas">
-        <div class="mesa disponible">
+          
+          <%
+              //creamos un dao para saber el esatdo de la mesa
+              com.dao.MesaDao dao = new com.dao.MesaDao();
+              //buscamos la mesa con el id1
+              String estadoMesa1 = dao.listarMesas().get(0).getEstadoMesa();
+          %>
+        <div class="mesa <%= estadoMesa1%>">
           <h3>Mesa 1</h3>
-          <p class="estado--mesa">Estado: Disponible</p>
+          <p class="estado--mesa">Estado: <%= estadoMesa1.toUpperCase()%> </p>
           <a href="m-registrar-pedido.jsp?idMesa=1" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
-          <button class="btn btn--agregar-producto btn-verde" onclick="cerrarCuenta('mesa2')">Agregar producto</button>
+          <button class="btn btn--agregar-producto btn-verde" >Agregar producto</button>
           <!-- <button class="btn btn-naranja">Registrar pedido</button> -->
         </div>
-        <div class="mesa ocupada">
+          <%
+              //creamos un dao para saber el esatdo de la mesa
+              //com.dao.MesaDao dao = new com.dao.MesaDao();
+              //buscamos la mesa con el id1
+              String estadoMesa2 = dao.listarMesas().get(1).getEstadoMesa();
+          %>
+        <div class="mesa <%= estadoMesa2%>">
           <h3>Mesa 2</h3>
-          <p class="estado--mesa">Estado: Ocupada</p>
+          <p class="estado--mesa">Estado: <%= estadoMesa2.toUpperCase()%></p>
           <a href="m-registrar-pedido.jsp?idMesa=2" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
-          <button class="btn btn--agregar-producto btn-verde" onclick="cerrarCuenta('mesa2')">Agregar producto</button>
+          <button class="btn btn--agregar-producto btn-verde" >Agregar producto</button>
         </div>
-        <div class="mesa ocupada">
+          <%
+              //creamos un dao para saber el esatdo de la mesa
+              //com.dao.MesaDao dao = new com.dao.MesaDao();
+              //buscamos la mesa con el id1
+              String estadoMesa3 = dao.listarMesas().get(2).getEstadoMesa();
+          %>
+        <div class="mesa <%= estadoMesa3%>">
           <h3>Mesa 3</h3>
-          <p class="estado--mesa">Estado: Ocupada</p>
+          <p class="estado--mesa">Estado: <%= estadoMesa3.toUpperCase()%></p>
           <a href="m-registrar-pedido.jsp?idMesa=3" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
-          <button class="btn btn--agregar-producto btn-verde" onclick="cerrarCuenta('mesa2')">Agregar producto</button>
+          <button class="btn btn--agregar-producto btn-verde" >Agregar producto</button>
         </div>
-        <div class="mesa reservada">
+          <%
+              //creamos un dao para saber el esatdo de la mesa
+              //com.dao.MesaDao dao = new com.dao.MesaDao();
+              //buscamos la mesa con el id1
+              String estadoMesa4 = dao.listarMesas().get(3).getEstadoMesa();
+          %>
+        <div class="mesa <%= estadoMesa4%>">
           <h3>Mesa 4</h3>
-          <p class="estado--mesa">Estado: Reservada</p>
+          <p class="estado--mesa">Estado: <%= estadoMesa4.toUpperCase()%></p>
           <a href="m-registrar-pedido.jsp?idMesa=4" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
-          <button class="btn btn--agregar-producto btn-verde" onclick="cerrarCuenta('mesa2')">Agregar producto</button>
+          <button class="btn btn--agregar-producto btn-verde" >Agregar producto</button>
         </div>
-        <div class="mesa disponible">
+          <%
+              //creamos un dao para saber el esatdo de la mesa
+              //com.dao.MesaDao dao = new com.dao.MesaDao();
+              //buscamos la mesa con el id1
+              String estadoMesa5 = dao.listarMesas().get(4).getEstadoMesa();
+          %>
+        <div class="mesa <%= estadoMesa5%>">
           <h3>Mesa 5</h3>
-          <p class="estado--mesa">Estado: Disponible</p>
+          <p class="estado--mesa">Estado: <%= estadoMesa5.toUpperCase()%></p>
           <a href="m-registrar-pedido.jsp?idMesa=5" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
-          <button class="btn btn--agregar-producto btn-verde" onclick="cerrarCuenta('mesa2')">Agregar producto</button>
+          <button class="btn btn--agregar-producto btn-verde">Agregar producto</button>
         </div>
-        <div class="mesa ocupada">
+          <%
+              //creamos un dao para saber el esatdo de la mesa
+              //com.dao.MesaDao dao = new com.dao.MesaDao();
+              //buscamos la mesa con el id1
+              String estadoMesa6 = dao.listarMesas().get(5).getEstadoMesa();
+          %>
+        <div class="mesa <%= estadoMesa6%>">
           <h3>Mesa 6</h3>
-          <p class="estado--mesa">Estado: Ocupada</p>
+          <p class="estado--mesa">Estado: <%= estadoMesa6.toUpperCase()%></p>
           <a href="m-registrar-pedido.jsp?idMesa=6" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
-          <button class="btn btn--agregar-producto btn-verde" onclick="cerrarCuenta('mesa2')">Agregar producto</button>
+          <button class="btn btn--agregar-producto btn-verde" >Agregar producto</button>
         </div>
-        <div class="mesa reservada">
+          <%
+              //creamos un dao para saber el esatdo de la mesa
+              //com.dao.MesaDao dao = new com.dao.MesaDao();
+              //buscamos la mesa con el id1
+              String estadoMesa7 = dao.listarMesas().get(6).getEstadoMesa();
+          %>
+        <div class="mesa <%= estadoMesa7%>">
           <h3>Mesa 7</h3>
-          <p class="estado--mesa">Estado: Reservada</p>
+          <p class="estado--mesa">Estado: <%= estadoMesa7.toUpperCase()%></p>
           <a href="m-registrar-pedido.jsp?idMesa=7" class="btn btn--registrar-pedido  btn-naranja">Registrar pedido</a>
-          <button class="btn btn--agregar-producto btn-verde" onclick="cerrarCuenta('mesa2')">Agregar producto</button>
+          <button class="btn btn--agregar-producto btn-verde" >Agregar producto</button>
         </div>
-        <div class="mesa disponible">
+          <%
+              //creamos un dao para saber el esatdo de la mesa
+              //com.dao.MesaDao dao = new com.dao.MesaDao();
+              //buscamos la mesa con el id1
+              String estadoMesa8 = dao.listarMesas().get(7).getEstadoMesa();
+          %>
+        <div class="mesa <%= estadoMesa8%>">
           <h3>Mesa 8</h3>
-          <p class="estado--mesa">Estado: Disponible</p>
+          <p class="estado--mesa">Estado: <%= estadoMesa8.toUpperCase()%></p>
           <a href="m-registrar-pedido.jsp?idMesa=8" class="btn--registrar-pedido btn-naranja">Registrar pedido</a>
-          <button class="btn btn--agregar-producto btn-verde" onclick="cerrarCuenta('mesa2')">Agregar producto</button>
+          <button class="btn btn--agregar-producto btn-verde" >Agregar producto</button>
         </div>
       </section>
-      </form>
     </main>
   </div>
-  <!-- Pie de página -->
+  <!-- Pie de pÃ¡gina -->
   <footer class="footer">
     <p>&copy; 2025 Labur-Ga. Todos los derechos reservados.</p>
   </footer>

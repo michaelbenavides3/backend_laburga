@@ -52,7 +52,8 @@ public class MesaDao {
         PreparedStatement operacion = null;
         ResultSet resultado = null;
         
-        // Cambiado aquí también en el SELECT
+        // Consutal dinamica si encunetra un pedido en pendiente la marca como ocupada automaticamente
+       // Consulta limpia, plana y segura (Trae los datos directo de la tabla mesas)
         String sqlQuery = "SELECT id_mesas, numero_mesa, capcidad_mesa, estado_mesa FROM mesas";
         
         try {
@@ -65,6 +66,7 @@ public class MesaDao {
                 m.setNumeroMesa(resultado.getInt("numero_mesa"));
                 // Cambiado para que lea la columna exacta de la BD
                 m.setCapcidadMesa(resultado.getInt("capcidad_mesa")); 
+                //aquie se lee la columna calcualada por mysql
                 m.setEstadoMesa(resultado.getString("estado_mesa"));
                 lista.add(m);
             }

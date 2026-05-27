@@ -13,14 +13,16 @@ public class PedidoDao {
    
     public int registrarNuevoPedido(Pedido nuevoPedido) {
         java.sql.Connection accesoBD = com.conexion.claseConexion.getConexion();
-        java.sql.PreparedStatement operacion;
-        java.sql.ResultSet resultadoClave;
+        java.sql.PreparedStatement operacion = null;
+        java.sql.PreparedStatement operacionMesa = null;
+        java.sql.ResultSet resultadoClave = null;
 
-        String sqlQuery = "INSERT INTO pedidos (id_mesa, id_mesero, estado_pedido) VALUES (?, ?, ?)";
+        String sqlPedido = "INSERT INTO pedidos (id_mesa, id_mesero, estado_pedido) VALUES (?, ?, ?)";
+        String sqlMesa = "UPDATE mesas SET estado_mesa = 'ocupada' WHERE id_mesas = ?";
 
         try {
-            operacion = accesoBD.prepareStatement(sqlQuery, java.sql.Statement.RETURN_GENERATED_KEYS);
-
+            //insertamos el pedido
+            operacion = accesoBD.prepareStatement(sqlPedido, java.sql.Statement.RETURN_GENERATED_KEYS);
             operacion.setInt(1, nuevoPedido.getIdMesa());
             operacion.setInt(2, nuevoPedido.getIdMesero());
             operacion.setString(3, nuevoPedido.getEstadoPedido()); 
@@ -30,11 +32,23 @@ public class PedidoDao {
             if (filasInsertadas > 0) {
                 resultadoClave = operacion.getGeneratedKeys();
                 if (resultadoClave.next()) {
-                    return resultadoClave.getInt(1); // Éxito total: devuelve el ID generado
+                    int idPedidioGenerado = resultadoClave.getInt(1); //se guarad el id el pedido
+                   // return resultadoClave.getInt(1); // Éxito total: devuelve el ID generado
+                   
+                   operacionMesa = accesoBD.prepareStatement(sqlMesa);
+                   operacionMesa.setInt(1, nuevoPedido.getIdMesa());
+                   operacionMesa.executeUpdate();
+                   
+                   return idPedidioGenerado;
                 }
             }
         } catch (Exception error) {
             System.out.println("Error al guardar pedido en MySQL: " + error.getMessage());
+        }finally{
+            // Cerramos recursos adicionales de forma segura
+            try { if (resultadoClave != null) resultadoClave.close(); } catch (Exception e) {}
+            try { if (operacionMesa != null) operacionMesa.close(); } catch (Exception e) {}
+            try { if (operacion != null) operacion.close(); } catch (Exception e) {}
         }
 
         return 0; // Si falla devuelve 0

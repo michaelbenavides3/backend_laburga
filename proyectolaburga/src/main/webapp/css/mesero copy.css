@@ -107,9 +107,18 @@ html, body {
   background-color: var(--blanco);
   border: 2px solid var(--gris-claro);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1.2rem;
   text-align: center;
   width: 180px; /* ancho fijo para cada mesa */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+mesa:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0,0,0, 0.1);
 }
 
 /* Clase base para todos los botones */
@@ -181,9 +190,9 @@ html, body {
 
 
 /* Estados de mesa */
-.mesa.disponible { background-color: var(--verde-disponible); }
-.mesa.ocupada    { background-color: var(--rojo-ocupada); }
-.mesa.reservada  { background-color: var(--amarillo-reservada); }
+.mesa.disponible { background-color: var(--verde-disponible)!important; }
+.mesa.ocupada    { background-color: var(--rojo-ocupada)!important; }
+.mesa.reservada  { background-color: var(--amarillo-reservada)!important; }
 
 /* Footer */
 .footer {
