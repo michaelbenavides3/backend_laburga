@@ -16,6 +16,9 @@
   --color-fondo-formulario: #ffe8cd;
   --padding-header:50px;
   /* --tamaño--btn-sidebar: 0.8rem; */
-  --tamaño-btn-menu: 150px 150px;
+  --tamaño-btn-menu: 150px 150px
+  //--verde-disponible: #a3ffb4;
+  //--rojo-ocupada: #ff9999;
+  //--amarillo-reservada: #ffe699
 }
 
