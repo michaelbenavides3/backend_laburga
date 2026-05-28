@@ -40,9 +40,24 @@ public class MesaDao {
         } catch (Exception e) {
             System.out.println("Error al inicializar mesas: " + e.getMessage());
         } finally {
-            try { if (rs != null) rs.close(); } catch (Exception e) {}
-            try { if (verificar != null) verificar.close(); } catch (Exception e) {}
-            try { if (insertar != null) insertar.close(); } catch (Exception e) {}
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (verificar != null) {
+                    verificar.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (insertar != null) {
+                    insertar.close();
+                }
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -51,31 +66,63 @@ public class MesaDao {
         Connection accesoBD = claseConexion.getConexion();
         PreparedStatement operacion = null;
         ResultSet resultado = null;
-        
+
         // Consutal dinamica si encunetra un pedido en pendiente la marca como ocupada automaticamente
-       // Consulta limpia, plana y segura (Trae los datos directo de la tabla mesas)
+        // Consulta limpia, plana y segura (Trae los datos directo de la tabla mesas)
         String sqlQuery = "SELECT id_mesas, numero_mesa, capcidad_mesa, estado_mesa FROM mesas";
-        
+
         try {
             operacion = accesoBD.prepareStatement(sqlQuery);
             resultado = operacion.executeQuery();
-            
-            while(resultado.next()) {
+
+            while (resultado.next()) {
                 Mesa m = new Mesa();
                 m.setIdMesas(resultado.getInt("id_mesas"));
                 m.setNumeroMesa(resultado.getInt("numero_mesa"));
                 // Cambiado para que lea la columna exacta de la BD
-                m.setCapcidadMesa(resultado.getInt("capcidad_mesa")); 
+                m.setCapcidadMesa(resultado.getInt("capcidad_mesa"));
                 //aquie se lee la columna calcualada por mysql
                 m.setEstadoMesa(resultado.getString("estado_mesa"));
                 lista.add(m);
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error al listar mesas: " + e.getMessage());
         } finally {
-            try { if (resultado != null) resultado.close(); } catch (Exception e) {}
-            try { if (operacion != null) operacion.close(); } catch (Exception e) {}
+            try {
+                if (resultado != null) {
+                    resultado.close();
+                }
+            } catch (Exception e) {
+            }
+            try {
+                if (operacion != null) {
+                    operacion.close();
+                }
+            } catch (Exception e) {
+            }
         }
         return lista;
+    }
+
+    public void cambiarEstado(int idMesa, String nuevoEstado) {
+
+        //Connection accesoBD = claseConexion.getConexion();
+        //modificar los datos de la tabla mesa ? es el espacio vacia where id_mesas llama solo al id que se le hace el cambio 
+        String sqlConsulta = "UPDATE mesas SET estado_mesa = ? WHERE id_mesas = ?";
+
+        try (Connection accesoBD = claseConexion.getConexion(); 
+             PreparedStatement operacion = accesoBD.prepareStatement(sqlConsulta)) 
+        {
+
+            operacion.setString(1, nuevoEstado);
+            operacion.setInt(2, idMesa);
+
+            operacion.executeUpdate();
+            System.out.println("Estado de mesa " + idMesa + " actualizado a: " + nuevoEstado + " ===");
+
+        } catch (Exception e) {
+            System.out.println("Error al actualizar estado de mesa: " + e.getMessage());
+        }
+
     }
 }

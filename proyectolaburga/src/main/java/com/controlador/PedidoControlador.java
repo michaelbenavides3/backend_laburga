@@ -93,6 +93,10 @@ public class PedidoControlador extends HttpServlet {
                 }
             }
 
+            //Actualizas la mesa com
+            com.dao.MesaDao mesaDao = new com.dao.MesaDao();
+            mesaDao.cambiarEstado(idMesa, "ocupada");
+
             // Si todo sale bien, devolvemos al mesero a su panel principal de mesas
             response.sendRedirect("html/m-meserocopy.jsp");
         } else {

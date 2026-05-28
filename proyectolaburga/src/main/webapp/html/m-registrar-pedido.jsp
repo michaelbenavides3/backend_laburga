@@ -36,9 +36,9 @@
                 <nav>
                     <img src="../recurso/logo-burguer.png" alt="imagen-logo-lagurga">
                     <a href="m-meserocopy.jsp" class="btn">Mesas</a>
-                    <a href="unir-mesas.jsp" class="btn">Unir Mesas</a>
+                   <!-- <a href="unir-mesas.jsp" class="btn">Unir Mesas</a>
                     <a href="separar-mesas.jsp" class="btn">Separar Mesas</a>
-                    <a href="enviar-cuenta.jsp" class="btn">Enviar cuenta</a>
+                    <a href="enviar-cuenta.jsp" class="btn">Enviar cuenta</a> -->
                     <a href="verificarcuenta.jsp" class="btn">Verificar cuenta</a>
                     <a href="m-formulario-reserva.jsp" class="btn">Realizar Reserva</a>
                     <a href="m-formulario-clientenuevo-mesero.jsp" class="btn">Nuevo Cliente</a>

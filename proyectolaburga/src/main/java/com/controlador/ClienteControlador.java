@@ -35,6 +35,15 @@ public class ClienteControlador extends HttpServlet {
         //  INVOCACIÓN DE LA CAPA MODELO: Instanciamos el DAO para ejecutar el proceso transaccional en las 3 tablas
         ClienteDao dao = new ClienteDao();
 
+        //valida que el numero tenga 10 digitos
+        if(telefonoFormulario == null || telefonoFormulario.length() !=10 || !telefonoFormulario.matches("\\d+")){
+            System.out.println("error el telefono no tiene el formato correcto");
+            //si falla regresaereos al formulario 
+            response.sendRedirect("html/m-formulario-clientenuevo-mesero.jsp");
+            return;
+        }
+        
+        
         //llamadmos al nuevo metdo pasando la cc del formulario
         //si regresa true siginifica que el where encontro la cc en mysql
         if (dao.existeCliente(documentoFormulario)) {

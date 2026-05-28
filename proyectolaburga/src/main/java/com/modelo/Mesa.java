@@ -1,6 +1,16 @@
 package com.modelo;
 
 public class Mesa {
+    
+    //constantes
+    public static final String ESTADO_DISPONIBLE = "disponible";
+    public static final String ESTADO_OCUPADA = "ocupada";
+    public static final String ESTADO_RESERVADA = "reservada";
+    public static final String ESTADO_PENDIENTE_COBRO = "pendiente_cobro";
+    
+    
+    
+    //atributos
     private int idMesas;
     private int numeroMesa;
     private int capcidadMesa; // <--- capacidad mesas

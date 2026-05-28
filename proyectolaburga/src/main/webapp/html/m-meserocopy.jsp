@@ -53,13 +53,15 @@
                     <div class="mesa <%= estadoMesa1%>">
                         <h3>Mesa 1</h3>
                         <p class="estado--mesa">Estado: <%= estadoMesa1.toUpperCase()%> </p>
-                        <% if (estadoMesa1.equals("ocupada")) { %>
+                        <%if(estadoMesa1.equals("pendiente_cobro")){ %>
+                        <button class="btn btn-amarillo"> Esperando Cajero </button>
+                        <%} if (estadoMesa1.equals("ocupada")) { %>
                         <a href="m-ver-cuenta.jsp?idMesa=1" class="btn btn--registrar-pedido btn-naranja">Ver Cuenta</a>
                         <% } else { %>
-                        <a href="m-registrar-pedido.jsp?idMesa=3" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
+                        <a href="m-registrar-pedido.jsp?idMesa=1" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
                         <% } %>
 
-                        <a href="m-agregar-producto.jsp?idMesa=3" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
+                        <a href="m-agregar-producto.jsp?idMesa=1" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
                     </div>
                     <%
                         //creamos un dao para saber el esatdo de la mesa
@@ -73,10 +75,10 @@
                         <% if (estadoMesa2.equals("ocupada")) { %>
                         <a href="m-ver-cuenta.jsp?idMesa=2" class="btn btn--registrar-pedido btn-naranja">Ver Cuenta</a>
                         <% } else { %>
-                        <a href="m-registrar-pedido.jsp?idMesa=3" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
+                        <a href="m-registrar-pedido.jsp?idMesa=2" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
                         <% } %>
 
-                        <a href="m-agregar-producto.jsp?idMesa=3" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
+                        <a href="m-agregar-producto.jsp?idMesa=2" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
                     </div>
                     <%
                         //creamos un dao para saber el esatdo de la mesa
@@ -123,10 +125,10 @@
                         <% if (estadoMesa4.equals("ocupada")) { %>
                         <a href="m-ver-cuenta.jsp?idMesa=4" class="btn btn--registrar-pedido btn-naranja">Ver Cuenta</a>
                         <% } else { %>
-                        <a href="m-registrar-pedido.jsp?idMesa=3" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
+                        <a href="m-registrar-pedido.jsp?idMesa=4" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
                         <% } %>
 
-                        <a href="m-agregar-producto.jsp?idMesa=3" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
+                        <a href="m-agregar-producto.jsp?idMesa=4" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
                     </div>
                     <%
                         //creamos un dao para saber el esatdo de la mesa
@@ -140,10 +142,10 @@
                         <% if (estadoMesa5.equals("ocupada")) { %>
                         <a href="m-ver-cuenta.jsp?idMesa=5" class="btn btn--registrar-pedido btn-naranja">Ver Cuenta</a>
                         <% } else { %>
-                        <a href="m-registrar-pedido.jsp?idMesa=3" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
+                        <a href="m-registrar-pedido.jsp?idMesa=5" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
                         <% } %>
 
-                        <a href="m-agregar-producto.jsp?idMesa=3" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
+                        <a href="m-agregar-producto.jsp?idMesa=5" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
                     </div>
                     <%
                         //creamos un dao para saber el esatdo de la mesa
@@ -157,10 +159,10 @@
                         <% if (estadoMesa6.equals("ocupada")) { %>
                         <a href="m-ver-cuenta.jsp?idMesa=6" class="btn btn--registrar-pedido btn-naranja">Ver Cuenta</a>
                         <% } else { %>
-                        <a href="m-registrar-pedido.jsp?idMesa=3" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
+                        <a href="m-registrar-pedido.jsp?idMesa=6" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
                         <% } %>
 
-                        <a href="m-agregar-producto.jsp?idMesa=3" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
+                        <a href="m-agregar-producto.jsp?idMesa=6" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
                     </div>
                     <%
                         //creamos un dao para saber el esatdo de la mesa
@@ -174,10 +176,10 @@
                         <% if (estadoMesa7.equals("ocupada")) { %>
                         <a href="m-ver-cuenta.jsp?idMesa=7" class="btn btn--registrar-pedido btn-naranja">Ver Cuenta</a>
                         <% } else { %>
-                        <a href="m-registrar-pedido.jsp?idMesa=3" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
+                        <a href="m-registrar-pedido.jsp?idMesa=7" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
                         <% } %>
 
-                        <a href="m-agregar-producto.jsp?idMesa=3" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
+                        <a href="m-agregar-producto.jsp?idMesa=7" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
                     </div>
                     <%
                         //creamos un dao para saber el esatdo de la mesa
@@ -191,10 +193,10 @@
                         <% if (estadoMesa8.equals("ocupada")) { %>
                         <a href="m-ver-cuenta.jsp?idMesa=8" class="btn btn--registrar-pedido btn-naranja">Ver Cuenta</a>
                         <% } else { %>
-                        <a href="m-registrar-pedido.jsp?idMesa=3" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
+                        <a href="m-registrar-pedido.jsp?idMesa=8" class="btn btn--registrar-pedido btn-naranja">Registrar pedido</a>
                         <% }%>
 
-                        <a href="m-agregar-producto.jsp?idMesa=3" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
+                        <a href="m-agregar-producto.jsp?idMesa=8" class="btn btn--agregar-producto btn-verde">Agregar producto</a>
                     </div>
                 </section>
             </main>
