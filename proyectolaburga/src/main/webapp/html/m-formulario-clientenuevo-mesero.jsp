@@ -20,7 +20,8 @@
                 <input type="text" id="nombre" name="nombre" required>
 
                 <label for="documento">Documento de Identidad (CC):</label>
-                <input type="text" id="documento" name="documento" required>
+                <input type="text" id="documento" name="documento" required pattern="[0-9]{6,10}" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                       title="Solo se debe Ingresar Numeros">
 
                 <!-- Teléfono -->
                 <label for="telefono">Telefono:</label>
